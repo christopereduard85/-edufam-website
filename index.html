@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>EduFam – Lagu & Nursery Rhymes untuk Anak</title>
+<title>EduFam – Nursery Rhymes & Kids Songs</title>
 <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
@@ -14,7 +14,24 @@
 }
 body{font-family:'Nunito',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;}
 
-/* NAV */
+/* ── LANG SWITCHER ── */
+.lang-switcher{
+  display:flex;align-items:center;
+  background:#F0EDE8;border-radius:50px;
+  padding:4px;gap:2px;
+}
+.lang-btn{
+  padding:6px 14px;border-radius:50px;border:none;
+  font-family:'Fredoka One',cursive;font-size:0.85rem;cursor:pointer;
+  transition:all .2s;background:transparent;color:#888;
+}
+.lang-btn.active{
+  background:white;color:var(--text);
+  box-shadow:0 2px 8px rgba(0,0,0,0.12);
+}
+.lang-btn:hover:not(.active){color:var(--text);}
+
+/* ── NAV ── */
 nav{
   position:fixed;top:0;left:0;right:0;z-index:100;height:64px;
   padding:0 5%;display:flex;align-items:center;justify-content:space-between;
@@ -24,7 +41,7 @@ nav{
 .nav-logo{font-family:'Fredoka One',cursive;font-size:1.7rem;text-decoration:none;
   background:linear-gradient(135deg,var(--orange),var(--pink));
   -webkit-background-clip:text;-webkit-text-fill-color:transparent;}
-.nav-right{display:flex;align-items:center;gap:14px;}
+.nav-right{display:flex;align-items:center;gap:12px;}
 .nav-links{display:flex;gap:20px;list-style:none;}
 .nav-links a{font-weight:700;font-size:0.9rem;text-decoration:none;color:var(--text);transition:color .2s;}
 .nav-links a:hover{color:var(--pink);}
@@ -33,7 +50,7 @@ nav{
   box-shadow:0 3px 12px rgba(255,107,157,0.4);transition:transform .2s;}
 .nav-sub:hover{transform:scale(1.05);}
 
-/* HERO */
+/* ── HERO ── */
 .hero{
   position:relative;min-height:100vh;overflow:hidden;
   background:linear-gradient(180deg,#6EC6E6 0%,#A8DDF0 30%,#C5EDB5 65%,#7DC863 100%);
@@ -49,7 +66,6 @@ nav{
 .sun-rays{position:absolute;top:42px;right:calc(7% - 8px);width:116px;height:116px;
   animation:spin-slow 12s linear infinite;}
 @keyframes spin-slow{from{transform:rotate(0)}to{transform:rotate(360deg)}}
-
 .cloud{position:absolute;background:white;border-radius:50px;opacity:.88;animation:drift linear infinite;}
 .cloud::before,.cloud::after{content:'';position:absolute;background:white;border-radius:50%;}
 .cloud.c1{width:130px;height:42px;top:9%;left:-150px;animation-duration:24s;}
@@ -62,63 +78,42 @@ nav{
 .cloud.c3::before{width:75px;height:70px;top:-32px;left:22px;}
 .cloud.c3::after{width:60px;height:56px;top:-24px;left:72px;}
 @keyframes drift{from{left:-220px}to{left:110%}}
-
 .rainbow{position:absolute;top:55px;left:4%;width:200px;height:100px;
   border-radius:100px 100px 0 0;background:transparent;
   border-top:13px solid rgba(255,60,60,0.4);
   box-shadow:0 -13px 0 rgba(255,165,0,0.32),0 -26px 0 rgba(255,240,0,0.28),
     0 -39px 0 rgba(60,200,80,0.24),0 -52px 0 rgba(30,120,255,0.2),0 -65px 0 rgba(140,30,220,0.18);
   opacity:.9;}
-
 .hero-hills{position:absolute;bottom:0;left:0;right:0;}
 .hero-hills svg{width:100%;display:block;}
-
 .hero-content{position:relative;z-index:5;max-width:720px;}
-.channel-badge{
-  display:inline-flex;align-items:center;gap:10px;
+.channel-badge{display:inline-flex;align-items:center;gap:10px;
   background:white;border-radius:50px;padding:10px 22px;
   box-shadow:0 4px 20px rgba(0,0,0,0.13);margin-bottom:24px;
-  animation:popIn .6s ease both;
-}
-.channel-badge .avatar{
-  width:38px;height:38px;border-radius:50%;
+  animation:popIn .6s ease both;}
+.channel-badge .avatar{width:38px;height:38px;border-radius:50%;
   background:linear-gradient(135deg,var(--orange),var(--pink));
-  display:flex;align-items:center;justify-content:center;
-  font-size:1.2rem;
-}
+  display:flex;align-items:center;justify-content:center;font-size:1.2rem;}
 .channel-badge span{font-family:'Fredoka One',cursive;font-size:1.1rem;color:var(--pink);}
-.channel-badge .subs{font-size:0.78rem;font-weight:800;color:#888;background:#F5F5F5;
-  padding:3px 10px;border-radius:50px;}
+.channel-badge .subs{font-size:0.78rem;font-weight:800;color:#888;background:#F5F5F5;padding:3px 10px;border-radius:50px;}
 @keyframes popIn{from{opacity:0;transform:scale(.7)}to{opacity:1;transform:scale(1)}}
-
-.hero h1{
-  font-family:'Fredoka One',cursive;
-  font-size:clamp(3rem,9vw,5.8rem);
+.hero h1{font-family:'Fredoka One',cursive;font-size:clamp(3rem,9vw,5.8rem);
   line-height:1.05;color:white;
   text-shadow:0 4px 0 rgba(0,0,0,0.1),0 8px 24px rgba(0,0,0,0.1);
-  margin-bottom:14px;
-  animation:slideUp .6s ease .15s both;
-}
+  margin-bottom:14px;animation:slideUp .6s ease .15s both;}
 .hero h1 .colline{
   background:linear-gradient(135deg,#FF6B6B,#FF9A3C,#FFE030,#6BCB77,#4ECDC4,#A78BFA);
-  -webkit-background-clip:text;-webkit-text-fill-color:transparent;display:block;
-}
-.hero-desc{
-  color:rgba(255,255,255,.92);font-weight:700;font-size:1.1rem;
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;display:block;}
+.hero-desc{color:rgba(255,255,255,.92);font-weight:700;font-size:1.1rem;
   text-shadow:0 2px 8px rgba(0,0,0,.12);margin-bottom:30px;
-  animation:slideUp .6s ease .25s both;
-}
-.animals-row{
-  display:flex;justify-content:center;gap:6px;flex-wrap:wrap;
-  font-size:2.6rem;margin-bottom:32px;
-  animation:slideUp .6s ease .35s both;
-}
+  animation:slideUp .6s ease .25s both;}
+.animals-row{display:flex;justify-content:center;gap:6px;flex-wrap:wrap;
+  font-size:2.6rem;margin-bottom:32px;animation:slideUp .6s ease .35s both;}
 .animals-row span{display:inline-block;animation:waggle 2.4s ease-in-out infinite;}
 .animals-row span:nth-child(2){animation-delay:.2s}.animals-row span:nth-child(3){animation-delay:.4s}
 .animals-row span:nth-child(4){animation-delay:.6s}.animals-row span:nth-child(5){animation-delay:.8s}
 .animals-row span:nth-child(6){animation-delay:1s}.animals-row span:nth-child(7){animation-delay:1.2s}
 @keyframes waggle{0%,100%{transform:rotate(-6deg) scale(1)}50%{transform:rotate(6deg) scale(1.12)}}
-
 .hero-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;animation:slideUp .6s ease .45s both;}
 .btn-red{display:inline-flex;align-items:center;gap:10px;
   background:#FF0000;color:white;padding:15px 32px;border-radius:50px;
@@ -132,8 +127,6 @@ nav{
   box-shadow:0 4px 16px rgba(0,0,0,.12);transition:transform .2s;
   border:3px solid rgba(255,255,255,.5);}
 .btn-white:hover{transform:translateY(-3px);}
-.btn-red svg,.btn-white svg{width:22px;height:22px;fill:currentColor;}
-
 @keyframes slideUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
 
 /* ── SECTIONS ── */
@@ -148,56 +141,41 @@ section{padding:75px 5%;position:relative;}
 /* ── VIDEO GRID ── */
 .videos-sec{background:white;}
 .video-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:24px;}
-.v-card{
-  background:white;border-radius:22px;overflow:hidden;
-  box-shadow:0 5px 20px rgba(0,0,0,.08);
-  transition:transform .25s,box-shadow .25s;
-  text-decoration:none;color:inherit;display:block;
-}
+.v-card{background:white;border-radius:22px;overflow:hidden;
+  box-shadow:0 5px 20px rgba(0,0,0,.08);transition:transform .25s,box-shadow .25s;
+  text-decoration:none;color:inherit;display:block;}
 .v-card:hover{transform:translateY(-7px);box-shadow:0 16px 38px rgba(0,0,0,.14);}
-.v-thumb{
-  position:relative;aspect-ratio:16/9;overflow:hidden;background:#1a1a2e;
-}
+.v-thumb{position:relative;aspect-ratio:16/9;overflow:hidden;background:#1a1a2e;}
 .v-thumb img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .35s;}
 .v-card:hover .v-thumb img{transform:scale(1.05);}
-.v-play{
-  position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
-  background:rgba(0,0,0,.2);opacity:0;transition:opacity .25s;
-}
+.v-play{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+  background:rgba(0,0,0,.2);opacity:0;transition:opacity .25s;}
 .v-card:hover .v-play{opacity:1;}
-.play-btn{
-  width:60px;height:60px;border-radius:50%;background:rgba(255,0,0,.9);
-  display:flex;align-items:center;justify-content:center;
-  box-shadow:0 4px 20px rgba(0,0,0,.3);
-}
+.play-btn{width:60px;height:60px;border-radius:50%;background:rgba(255,0,0,.9);
+  display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(0,0,0,.3);}
 .play-btn svg{width:26px;height:26px;fill:white;margin-left:3px;}
-.v-duration{
-  position:absolute;bottom:8px;right:10px;
+.v-duration{position:absolute;bottom:8px;right:10px;
   background:rgba(0,0,0,.75);color:white;
-  font-size:.72rem;font-weight:800;padding:3px 7px;border-radius:6px;
-}
+  font-size:.72rem;font-weight:800;padding:3px 7px;border-radius:6px;}
 .v-info{padding:16px 18px 20px;}
 .v-cat{display:inline-block;font-size:.7rem;font-weight:800;
   padding:3px 10px;border-radius:50px;margin-bottom:8px;}
 .v-info h3{font-family:'Fredoka One',cursive;font-size:1rem;line-height:1.35;margin-bottom:6px;}
 .v-meta{display:flex;gap:10px;align-items:center;font-size:.78rem;color:#999;font-weight:700;}
 
-/* ── FEATURED (big) ── */
+/* ── FEATURED ── */
 .featured-sec{background:linear-gradient(180deg,#FFFBF0 0%,#FFF3D6 100%);}
 .featured-wrap{display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:center;}
 .featured-thumb{border-radius:24px;overflow:hidden;box-shadow:0 10px 40px rgba(0,0,0,.15);
-  position:relative;aspect-ratio:16/9;}
+  position:relative;aspect-ratio:16/9;display:block;text-decoration:none;}
 .featured-thumb img{width:100%;height:100%;object-fit:cover;display:block;}
-.featured-play{
-  position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
-  background:rgba(0,0,0,.15);
-}
+.featured-play{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+  background:rgba(0,0,0,.15);}
 .big-play{width:80px;height:80px;border-radius:50%;background:rgba(255,0,0,.9);
   display:flex;align-items:center;justify-content:center;
   box-shadow:0 6px 28px rgba(255,0,0,.4);transition:transform .2s;}
 .big-play:hover{transform:scale(1.1);}
 .big-play svg{width:34px;height:34px;fill:white;margin-left:4px;}
-.featured-info{}
 .feat-badge{display:inline-flex;align-items:center;gap:8px;
   background:#FF0000;color:white;font-family:'Fredoka One',cursive;
   padding:6px 16px;border-radius:50px;font-size:.85rem;margin-bottom:18px;}
@@ -215,50 +193,22 @@ section{padding:75px 5%;position:relative;}
 .btn-watch:hover{transform:translateY(-3px);}
 .btn-watch svg{width:20px;height:20px;fill:white;}
 
-/* ── PLAYLIST ── */
-.playlist-sec{background:white;}
-.playlist-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:20px;}
-.pl-card{
-  border-radius:20px;overflow:hidden;
-  box-shadow:0 4px 16px rgba(0,0,0,.08);
-  transition:transform .25s;text-decoration:none;color:inherit;display:block;
-}
-.pl-card:hover{transform:translateY(-5px) rotate(-1deg);}
-.pl-thumb{position:relative;aspect-ratio:16/9;overflow:hidden;}
-.pl-thumb img{width:100%;height:100%;object-fit:cover;transition:transform .3s;}
-.pl-card:hover .pl-thumb img{transform:scale(1.06);}
-.pl-count{
-  position:absolute;right:0;top:0;bottom:0;width:38%;
-  background:rgba(0,0,0,.75);display:flex;flex-direction:column;
-  align-items:center;justify-content:center;color:white;
-}
-.pl-count .num{font-family:'Fredoka One',cursive;font-size:1.5rem;}
-.pl-count .lbl{font-size:.65rem;font-weight:800;opacity:.8;}
-.pl-info{padding:14px 16px 16px;background:white;}
-.pl-info h4{font-family:'Fredoka One',cursive;font-size:.95rem;line-height:1.3;margin-bottom:4px;}
-.pl-info p{font-size:.78rem;color:#999;font-weight:700;}
-
 /* ── ANIMALS ── */
 .animals-sec{background:linear-gradient(160deg,#FFFEF0,#FFF0D6);}
 .animals-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:16px;}
-.an-card{
-  background:white;border-radius:18px;padding:20px 12px;text-align:center;
-  box-shadow:0 3px 12px rgba(0,0,0,.07);transition:transform .2s;
-}
+.an-card{background:white;border-radius:18px;padding:20px 12px;text-align:center;
+  box-shadow:0 3px 12px rgba(0,0,0,.07);transition:transform .2s;}
 .an-card:hover{transform:translateY(-5px) scale(1.05);}
 .an-em{font-size:2.6rem;display:block;margin-bottom:8px;}
 .an-name{font-family:'Fredoka One',cursive;font-size:.88rem;display:block;}
 .an-sound{font-size:.7rem;color:#999;font-weight:700;margin-top:2px;}
 
 /* ── CTA ── */
-.cta-sec{
-  background:linear-gradient(135deg,#FF6B9D 0%,#FF9A3C 50%,#FFE66D 100%);
-  text-align:center;padding:90px 5%;
-}
-.cta-sec h2{font-family:'Fredoka One',cursive;
-  font-size:clamp(2rem,6vw,4rem);color:white;
+.cta-sec{background:linear-gradient(135deg,#FF6B9D 0%,#FF9A3C 50%,#FFE66D 100%);
+  text-align:center;padding:90px 5%;}
+.cta-sec h2{font-family:'Fredoka One',cursive;font-size:clamp(2rem,6vw,4rem);color:white;
   text-shadow:0 3px 0 rgba(0,0,0,.1);margin-bottom:12px;}
-.cta-sec p{color:rgba(255,255,255,.9);font-size:1.05rem;font-weight:700;margin-bottom:16px;}
+.cta-sec p{color:rgba(255,255,255,.9);font-size:1.05rem;font-weight:700;margin-bottom:8px;}
 .cta-subs{font-family:'Fredoka One',cursive;font-size:3.5rem;color:white;
   text-shadow:0 4px 0 rgba(0,0,0,.1);margin-bottom:32px;display:block;}
 .cta-animals{font-size:2.4rem;margin-bottom:32px;letter-spacing:3px;display:block;}
@@ -267,7 +217,6 @@ section{padding:75px 5%;position:relative;}
   font-family:'Fredoka One',cursive;font-size:1.15rem;text-decoration:none;
   box-shadow:0 8px 28px rgba(0,0,0,.18);transition:transform .2s,box-shadow .2s;}
 .btn-cta:hover{transform:translateY(-4px) scale(1.03);box-shadow:0 14px 36px rgba(0,0,0,.22);}
-.btn-cta svg{width:26px;height:26px;fill:#FF0000;}
 
 /* ── FOOTER ── */
 footer{background:#1A1A2E;color:white;padding:50px 5% 28px;text-align:center;}
@@ -284,6 +233,9 @@ footer{background:#1A1A2E;color:white;padding:50px 5% 28px;text-align:center;}
   color:rgba(255,255,255,.3);font-size:.8rem;}
 .footer-bottom a{color:#FFE66D;text-decoration:none;}
 
+/* ── YT ICON ── */
+.yt-logo{display:inline-block;vertical-align:middle;flex-shrink:0;}
+
 @media(max-width:768px){
   .featured-wrap{grid-template-columns:1fr;}
   .nav-links{display:none;}
@@ -299,10 +251,15 @@ footer{background:#1A1A2E;color:white;padding:50px 5% 28px;text-align:center;}
   <a href="#" class="nav-logo">🎵 EduFam</a>
   <div class="nav-right">
     <ul class="nav-links">
-      <li><a href="#videos">Video</a></li>
-      <li><a href="#animals">Hewan</a></li>
+      <li><a href="#videos" data-i18n="nav_videos">Video</a></li>
+      <li><a href="#animals" data-i18n="nav_animals">Hewan</a></li>
     </ul>
-    <a href="https://www.youtube.com/@EduFam30?sub_confirmation=1" target="_blank" class="nav-sub">🔔 Subscribe!</a>
+    <!-- LANGUAGE SWITCHER -->
+    <div class="lang-switcher">
+      <button class="lang-btn active" onclick="setLang('id')">🇮🇩 ID</button>
+      <button class="lang-btn" onclick="setLang('en')">🇬🇧 EN</button>
+    </div>
+    <a href="https://www.youtube.com/@EduFam30?sub_confirmation=1" target="_blank" class="nav-sub" data-i18n="nav_sub">🔔 Subscribe!</a>
   </div>
 </nav>
 
@@ -317,7 +274,6 @@ footer{background:#1A1A2E;color:white;padding:50px 5% 28px;text-align:center;}
   </svg>
   <div class="rainbow"></div>
   <div class="cloud c1"></div><div class="cloud c2"></div><div class="cloud c3"></div>
-
   <div class="hero-hills">
     <svg viewBox="0 0 1440 140" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
       <path d="M0,70 C250,10 500,110 750,55 C1000,0 1200,100 1440,50 L1440,140 L0,140Z" fill="#4E9A38"/>
@@ -325,7 +281,6 @@ footer{background:#1A1A2E;color:white;padding:50px 5% 28px;text-align:center;}
       <path d="M0,115 C350,80 700,130 1100,105 C1250,95 1370,118 1440,110 L1440,140 L0,140Z" fill="#6BCB77"/>
     </svg>
   </div>
-
   <div class="hero-content">
     <div class="channel-badge">
       <div class="avatar">🌟</div>
@@ -334,54 +289,45 @@ footer{background:#1A1A2E;color:white;padding:50px 5% 28px;text-align:center;}
     </div>
     <h1>
       Nursery Rhymes
-      <span class="colline">& Animal Songs!</span>
+      <span class="colline" data-i18n="hero_h1_line2">& Lagu Anak Seru!</span>
     </h1>
-    <p class="hero-desc">🎵 Belajar Seru · Lagu Anak · Suara Hewan · Kids Favorites 🎵</p>
+    <p class="hero-desc" data-i18n="hero_desc">🎵 Belajar Seru · Lagu Anak · Suara Hewan · Kids Favorites 🎵</p>
     <div class="animals-row">
       <span>🐘</span><span>🦁</span><span>🐄</span><span>🐸</span><span>🐧</span><span>🐼</span><span>🦊</span>
     </div>
     <div class="hero-btns">
       <a href="https://www.youtube.com/@EduFam30" target="_blank" class="btn-red">
-        <svg viewBox="0 0 24 24"><path d="M10 15l5.19-3L10 9v6M21.56 7.17c-.24-.87-.94-1.57-1.81-1.81C18.18 5 12 5 12 5s-6.18 0-7.75.36c-.87.24-1.57.94-1.81 1.81C2 8.74 2 12 2 12s0 3.26.44 4.83c.24.87.94 1.57 1.81 1.81C5.82 19 12 19 12 19s6.18 0 7.75-.36c.87-.24 1.57-.94 1.81-1.81C22 15.26 22 12 22 12s0-3.26-.44-4.83z"/></svg>
-        Tonton di YouTube
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 28.57 20" width="26" height="18" class="yt-logo"><path d="M27.973 3.123A3.578 3.578 0 0 0 25.447.597C23.22 0 14.285 0 14.285 0S5.35 0 3.123.597A3.578 3.578 0 0 0 .597 3.123C0 5.35 0 10 0 10s0 4.65.597 6.877a3.578 3.578 0 0 0 2.526 2.526C5.35 20 14.285 20 14.285 20s8.935 0 11.162-.597a3.578 3.578 0 0 0 2.526-2.526C28.57 14.65 28.57 10 28.57 10s0-4.65-.597-6.877z" fill="white"/><path d="M11.425 14.285L18.848 10 11.425 5.715v8.57z" fill="#FF0000"/></svg>
+        <span data-i18n="btn_watch_yt">Tonton di YouTube</span>
       </a>
-      <a href="#videos" class="btn-white">🎶 Lihat Video →</a>
+      <a href="#videos" class="btn-white"><span data-i18n="btn_see_videos">🎶 Lihat Video →</span></a>
     </div>
   </div>
 </div>
 
-<!-- FEATURED VIDEO -->
+<!-- FEATURED -->
 <section class="featured-sec">
 <div class="wrap">
-  <span class="sec-label" style="color:var(--orange);">🔥 Video Terpopuler</span>
-  <h2 class="sec-title">Lagi <span style="color:var(--orange)">Hits</span> di EduFam!</h2>
-
+  <span class="sec-label" style="color:var(--orange);" data-i18n="feat_label">🔥 #1 Terpopuler</span>
+  <h2 class="sec-title" data-i18n="feat_title">Video Paling <span style="color:var(--orange)">Banyak Ditonton</span></h2>
   <div class="featured-wrap">
-    <a href="https://www.youtube.com/watch?v=4cJWVXtBb8M" target="_blank" class="featured-thumb">
-      <img src="https://img.youtube.com/vi/4cJWVXtBb8M/maxresdefault.jpg"
-           onerror="this.src='https://img.youtube.com/vi/4cJWVXtBb8M/hqdefault.jpg'"
-           alt="Animal Sounds Song EduFam" loading="lazy">
-      <div class="featured-play">
-        <div class="big-play">
-          <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-        </div>
-      </div>
+    <a href="https://www.youtube.com/watch?v=VlmfYuTyblA" target="_blank" class="featured-thumb">
+      <img src="https://img.youtube.com/vi/VlmfYuTyblA/maxresdefault.jpg"
+           onerror="this.src='https://img.youtube.com/vi/VlmfYuTyblA/hqdefault.jpg'" alt="Most Popular Video" loading="lazy">
+      <div class="featured-play"><div class="big-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></div>
     </a>
     <div class="featured-info">
-      <div class="feat-badge">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><circle cx="12" cy="12" r="10"/><path d="M10 8l6 4-6 4V8z" fill="red"/></svg>
-        Video Terbaru
-      </div>
-      <h2>Animal Sounds Song! 🐘🦁🐄<br>Learn Animal Names & Noises</h2>
-      <p>Kenali nama dan suara hewan dari seluruh dunia bersama teman-teman berbulu EduFam! Cocok untuk bayi, balita, dan anak-anak.</p>
+      <div class="feat-badge">⭐ <span data-i18n="feat_badge">Video Terpopuler #1</span></div>
+      <h2>The Animal Sound Song 🐘🦁🐄<br>Kids Songs & Nursery Rhymes</h2>
+      <p data-i18n="feat_desc">Video paling banyak ditonton di channel EduFam! Belajar nama dan suara hewan dari seluruh dunia — cocok untuk bayi, balita, dan seluruh keluarga.</p>
       <div class="feat-stats">
-        <div class="fstat"><div class="fstat-num">1H+</div><div class="fstat-label">Durasi</div></div>
-        <div class="fstat"><div class="fstat-num">🔴</div><div class="fstat-label">Live Available</div></div>
-        <div class="fstat"><div class="fstat-num">🌍</div><div class="fstat-label">All Ages</div></div>
+        <div class="fstat"><div class="fstat-num">🏆</div><div class="fstat-label" data-i18n="feat_stat1">Most Viewed</div></div>
+        <div class="fstat"><div class="fstat-num">1H+</div><div class="fstat-label" data-i18n="feat_stat2">Durasi</div></div>
+        <div class="fstat"><div class="fstat-num">🌍</div><div class="fstat-label" data-i18n="feat_stat3">Semua Usia</div></div>
       </div>
-      <a href="https://www.youtube.com/watch?v=4cJWVXtBb8M" target="_blank" class="btn-watch">
-        <svg viewBox="0 0 24 24"><path d="M10 15l5.19-3L10 9v6M21.56 7.17c-.24-.87-.94-1.57-1.81-1.81C18.18 5 12 5 12 5s-6.18 0-7.75.36c-.87.24-1.57.94-1.81 1.81C2 8.74 2 12 2 12s0 3.26.44 4.83c.24.87.94 1.57 1.81 1.81C5.82 19 12 19 12 19s6.18 0 7.75-.36c.87-.24 1.57-.94 1.81-1.81C22 15.26 22 12 22 12s0-3.26-.44-4.83z"/></svg>
-        Tonton Sekarang
+      <a href="https://www.youtube.com/watch?v=VlmfYuTyblA" target="_blank" class="btn-watch">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="white"><path d="M8 5v14l11-7z"/></svg>
+        <span data-i18n="btn_watch_now">Tonton Sekarang</span>
       </a>
     </div>
   </div>
@@ -391,101 +337,76 @@ footer{background:#1A1A2E;color:white;padding:50px 5% 28px;text-align:center;}
 <!-- VIDEO GRID -->
 <section class="videos-sec" id="videos">
 <div class="wrap">
-  <span class="sec-label" style="color:var(--pink);">🎵 Koleksi Video</span>
-  <h2 class="sec-title">Video <span style="color:var(--pink)">Seru</span> EduFam</h2>
-  <p class="sec-sub">Semua video langsung dari channel YouTube EduFam — klik untuk menonton!</p>
-
+  <span class="sec-label" style="color:var(--pink);" data-i18n="vid_label">🎵 Koleksi Video</span>
+  <h2 class="sec-title"><span data-i18n="vid_title">Video <span style="color:var(--pink)">Seru</span> EduFam</span></h2>
+  <p class="sec-sub" data-i18n="vid_sub">Semua video langsung dari channel YouTube EduFam — klik untuk menonton!</p>
   <div class="video-grid">
-
-    <a href="https://www.youtube.com/watch?v=4cJWVXtBb8M" target="_blank" class="v-card">
+    <a href="https://www.youtube.com/watch?v=VlmfYuTyblA" target="_blank" class="v-card">
       <div class="v-thumb">
-        <img src="https://img.youtube.com/vi/4cJWVXtBb8M/hqdefault.jpg" alt="Animal Sounds Song" loading="lazy">
+        <img src="https://img.youtube.com/vi/VlmfYuTyblA/hqdefault.jpg" alt="Video 1" loading="lazy">
         <div class="v-play"><div class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></div>
-        <div class="v-duration">1:01:24</div>
+        <div class="v-duration">🏆 #1</div>
       </div>
       <div class="v-info">
         <span class="v-cat" style="background:#FFF3E0;color:#E65100;">🦁 Animal Song</span>
-        <h3>Animal Sounds Song! Learn Animal Names and Noises</h3>
-        <div class="v-meta"><span>🔴 Live</span><span>May 2025</span></div>
-      </div>
-    </a>
-
-    <a href="https://www.youtube.com/watch?v=VlmfYuTyblA" target="_blank" class="v-card">
-      <div class="v-thumb">
-        <img src="https://img.youtube.com/vi/VlmfYuTyblA/hqdefault.jpg" alt="The Animal Sound Song" loading="lazy">
-        <div class="v-play"><div class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></div>
-        <div class="v-duration">1:05:59</div>
-      </div>
-      <div class="v-info">
-        <span class="v-cat" style="background:#E8F5E8;color:#2E7D32;">🐾 Kids Songs</span>
         <h3>The Animal Sound Song – Kids Songs & Nursery Rhymes</h3>
-        <div class="v-meta"><span>Oct 2023</span></div>
+        <div class="v-meta"><span>⭐ Most Viewed</span></div>
       </div>
     </a>
-
-    <a href="https://www.youtube.com/watch?v=Upn4UOzKbCE" target="_blank" class="v-card">
+    <a href="https://www.youtube.com/watch?v=SWGEuCgFefE" target="_blank" class="v-card">
       <div class="v-thumb">
-        <img src="https://img.youtube.com/vi/Upn4UOzKbCE/hqdefault.jpg" alt="Animal Dance Song" loading="lazy">
+        <img src="https://img.youtube.com/vi/SWGEuCgFefE/hqdefault.jpg" alt="Video 2" loading="lazy">
         <div class="v-play"><div class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></div>
-        <div class="v-duration">1:01:43</div>
+        <div class="v-duration">🥈 #2</div>
       </div>
       <div class="v-info">
-        <span class="v-cat" style="background:#FCE4EC;color:#C62828;">💃 Dance Song</span>
-        <h3>The Animal Sounds – Animal Dance Song | EduFam</h3>
-        <div class="v-meta"><span>Apr 2025</span></div>
+        <span class="v-cat" style="background:#E8F5E8;color:#2E7D32;">🎵 Nursery Rhymes</span>
+        <h3>Kids Songs & Nursery Rhymes | EduFam</h3>
+        <div class="v-meta"><span>⭐ Top 5</span></div>
       </div>
     </a>
-
-    <a href="https://www.youtube.com/watch?v=5vCeAR93iGo" target="_blank" class="v-card">
+    <a href="https://www.youtube.com/watch?v=izcVQ2hnNnw" target="_blank" class="v-card">
       <div class="v-thumb">
-        <img src="https://img.youtube.com/vi/5vCeAR93iGo/hqdefault.jpg" alt="Animal Sounds H1A" loading="lazy">
+        <img src="https://img.youtube.com/vi/izcVQ2hnNnw/hqdefault.jpg" alt="Video 3" loading="lazy">
         <div class="v-play"><div class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></div>
-        <div class="v-duration">1:00:00+</div>
+        <div class="v-duration">🥉 #3</div>
       </div>
       <div class="v-info">
-        <span class="v-cat" style="background:#E3F2FD;color:#1565C0;">🎵 Nursery Rhymes</span>
-        <h3>The Animal Sounds Song – Can You Name the Animal?</h3>
-        <div class="v-meta"><span>Jan 2024</span></div>
+        <span class="v-cat" style="background:#FCE4EC;color:#C62828;">🐾 Kids Favorites</span>
+        <h3>Kids Songs & Nursery Rhymes | EduFam</h3>
+        <div class="v-meta"><span>⭐ Top 5</span></div>
       </div>
     </a>
-
-    <a href="https://www.youtube.com/watch?v=NXUCMWrFER0" target="_blank" class="v-card">
+    <a href="https://www.youtube.com/watch?v=Ec-m6aFiTHc" target="_blank" class="v-card">
       <div class="v-thumb">
-        <img src="https://img.youtube.com/vi/NXUCMWrFER0/hqdefault.jpg" alt="Animal Sound Song" loading="lazy">
+        <img src="https://img.youtube.com/vi/Ec-m6aFiTHc/hqdefault.jpg" alt="Video 4" loading="lazy">
         <div class="v-play"><div class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></div>
-        <div class="v-duration">1:00:00+</div>
+        <div class="v-duration">#4</div>
       </div>
       <div class="v-info">
-        <span class="v-cat" style="background:#F3E5F5;color:#6A1B9A;">🌟 Kids Favorites</span>
-        <h3>Animal Sound Song – Kids Songs & Nursery Rhymes</h3>
-        <div class="v-meta"><span>Feb 2024</span></div>
+        <span class="v-cat" style="background:#E3F2FD;color:#1565C0;">🎶 Songs</span>
+        <h3>Kids Songs & Nursery Rhymes | EduFam</h3>
+        <div class="v-meta"><span>⭐ Top 5</span></div>
       </div>
     </a>
-
-    <a href="https://www.youtube.com/watch?v=zixOsoinxNg" target="_blank" class="v-card">
+    <a href="https://www.youtube.com/watch?v=f6vcDU_1MOw" target="_blank" class="v-card">
       <div class="v-thumb">
-        <img src="https://img.youtube.com/vi/zixOsoinxNg/hqdefault.jpg" alt="Animal Sounds" loading="lazy">
+        <img src="https://img.youtube.com/vi/f6vcDU_1MOw/hqdefault.jpg" alt="Video 5" loading="lazy">
         <div class="v-play"><div class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></div>
-        <div class="v-duration">1:00:00+</div>
+        <div class="v-duration">#5</div>
       </div>
       <div class="v-info">
-        <span class="v-cat" style="background:#E8F5E8;color:#2E7D32;">🐄 Farm Animals</span>
-        <h3>The Animal Sounds Song – EduFam Nursery Rhymes</h3>
-        <div class="v-meta"><span>🔴 Live</span></div>
+        <span class="v-cat" style="background:#F3E5F5;color:#6A1B9A;">🌟 Popular</span>
+        <h3>Kids Songs & Nursery Rhymes | EduFam</h3>
+        <div class="v-meta"><span>⭐ Top 5</span></div>
       </div>
     </a>
-
   </div>
-
   <div style="text-align:center;margin-top:40px;">
     <a href="https://www.youtube.com/@EduFam30/videos" target="_blank"
-      style="display:inline-flex;align-items:center;gap:10px;
-        background:var(--pink);color:white;padding:14px 32px;border-radius:50px;
-        font-family:'Fredoka One',cursive;font-size:1rem;text-decoration:none;
-        box-shadow:0 5px 18px rgba(255,107,157,.4);transition:transform .2s;"
-      onmouseover="this.style.transform='translateY(-3px)'"
-      onmouseout="this.style.transform=''">
-      🎵 Lihat Semua 6.400+ Video →
+      style="display:inline-flex;align-items:center;gap:10px;background:var(--pink);color:white;padding:14px 32px;border-radius:50px;font-family:'Fredoka One',cursive;font-size:1rem;text-decoration:none;box-shadow:0 5px 18px rgba(255,107,157,.4);transition:transform .2s;"
+      onmouseover="this.style.transform='translateY(-3px)'" onmouseout="this.style.transform=''">
+      <span data-i18n="btn_all_videos">🎵 Lihat Semua 6.400+ Video →</span>
     </a>
   </div>
 </div>
@@ -494,26 +415,26 @@ footer{background:#1A1A2E;color:white;padding:50px 5% 28px;text-align:center;}
 <!-- ANIMALS -->
 <section class="animals-sec" id="animals">
 <div class="wrap">
-  <span class="sec-label" style="color:var(--orange);">🦁 Kenalan Yuk!</span>
-  <h2 class="sec-title">Hewan-Hewan <span style="color:var(--orange)">Lucu</span> di EduFam</h2>
-  <p class="sec-sub">Seperti yang muncul di video-video EduFam!</p>
+  <span class="sec-label" style="color:var(--orange);" data-i18n="an_label">🦁 Kenalan Yuk!</span>
+  <h2 class="sec-title"><span data-i18n="an_title">Hewan-Hewan <span style="color:var(--orange)">Lucu</span> di EduFam</span></h2>
+  <p class="sec-sub" data-i18n="an_sub">Seperti yang muncul di video-video EduFam!</p>
   <div class="animals-grid">
-    <div class="an-card"><span class="an-em">🐘</span><span class="an-name">Gajah</span><div class="an-sound">Parrr!</div></div>
-    <div class="an-card"><span class="an-em">🦁</span><span class="an-name">Singa</span><div class="an-sound">Aummm!</div></div>
-    <div class="an-card"><span class="an-em">🐄</span><span class="an-name">Sapi</span><div class="an-sound">Mooo!</div></div>
-    <div class="an-card"><span class="an-em">🐯</span><span class="an-name">Harimau</span><div class="an-sound">Grrrr!</div></div>
-    <div class="an-card"><span class="an-em">🦏</span><span class="an-name">Badak</span><div class="an-sound">Snort!</div></div>
-    <div class="an-card"><span class="an-em">🦛</span><span class="an-name">Kuda Nil</span><div class="an-sound">Splash!</div></div>
-    <div class="an-card"><span class="an-em">🐸</span><span class="an-name">Katak</span><div class="an-sound">Ribbit!</div></div>
-    <div class="an-card"><span class="an-em">🐼</span><span class="an-name">Panda</span><div class="an-sound">Nyam!</div></div>
-    <div class="an-card"><span class="an-em">🐧</span><span class="an-name">Penguin</span><div class="an-sound">Kwek!</div></div>
-    <div class="an-card"><span class="an-em">🦓</span><span class="an-name">Zebra</span><div class="an-sound">Hihi!</div></div>
-    <div class="an-card"><span class="an-em">🐒</span><span class="an-name">Monyet</span><div class="an-sound">Oo oo!</div></div>
-    <div class="an-card"><span class="an-em">🦊</span><span class="an-name">Rubah</span><div class="an-sound">Yip!</div></div>
-    <div class="an-card"><span class="an-em">🐷</span><span class="an-name">Babi</span><div class="an-sound">Oink!</div></div>
-    <div class="an-card"><span class="an-em">🐰</span><span class="an-name">Kelinci</span><div class="an-sound">Hop!</div></div>
-    <div class="an-card"><span class="an-em">🐑</span><span class="an-name">Domba</span><div class="an-sound">Baaaa!</div></div>
-    <div class="an-card"><span class="an-em">🦒</span><span class="an-name">Jerapah</span><div class="an-sound">Hmm!</div></div>
+    <div class="an-card"><span class="an-em">🐘</span><span class="an-name" data-i18n="an_elephant">Gajah</span><div class="an-sound">Parrr!</div></div>
+    <div class="an-card"><span class="an-em">🦁</span><span class="an-name" data-i18n="an_lion">Singa</span><div class="an-sound">Aummm!</div></div>
+    <div class="an-card"><span class="an-em">🐄</span><span class="an-name" data-i18n="an_cow">Sapi</span><div class="an-sound">Mooo!</div></div>
+    <div class="an-card"><span class="an-em">🐯</span><span class="an-name" data-i18n="an_tiger">Harimau</span><div class="an-sound">Grrrr!</div></div>
+    <div class="an-card"><span class="an-em">🦏</span><span class="an-name" data-i18n="an_rhino">Badak</span><div class="an-sound">Snort!</div></div>
+    <div class="an-card"><span class="an-em">🦛</span><span class="an-name" data-i18n="an_hippo">Kuda Nil</span><div class="an-sound">Splash!</div></div>
+    <div class="an-card"><span class="an-em">🐸</span><span class="an-name" data-i18n="an_frog">Katak</span><div class="an-sound">Ribbit!</div></div>
+    <div class="an-card"><span class="an-em">🐼</span><span class="an-name" data-i18n="an_panda">Panda</span><div class="an-sound">Nyam!</div></div>
+    <div class="an-card"><span class="an-em">🐧</span><span class="an-name" data-i18n="an_penguin">Penguin</span><div class="an-sound">Kwek!</div></div>
+    <div class="an-card"><span class="an-em">🦓</span><span class="an-name" data-i18n="an_zebra">Zebra</span><div class="an-sound">Hihi!</div></div>
+    <div class="an-card"><span class="an-em">🐒</span><span class="an-name" data-i18n="an_monkey">Monyet</span><div class="an-sound">Oo oo!</div></div>
+    <div class="an-card"><span class="an-em">🦊</span><span class="an-name" data-i18n="an_fox">Rubah</span><div class="an-sound">Yip!</div></div>
+    <div class="an-card"><span class="an-em">🐷</span><span class="an-name" data-i18n="an_pig">Babi</span><div class="an-sound">Oink!</div></div>
+    <div class="an-card"><span class="an-em">🐰</span><span class="an-name" data-i18n="an_rabbit">Kelinci</span><div class="an-sound">Hop!</div></div>
+    <div class="an-card"><span class="an-em">🐑</span><span class="an-name" data-i18n="an_sheep">Domba</span><div class="an-sound">Baaaa!</div></div>
+    <div class="an-card"><span class="an-em">🦒</span><span class="an-name" data-i18n="an_giraffe">Jerapah</span><div class="an-sound">Hmm!</div></div>
   </div>
 </div>
 </section>
@@ -521,13 +442,13 @@ footer{background:#1A1A2E;color:white;padding:50px 5% 28px;text-align:center;}
 <!-- CTA -->
 <section class="cta-sec">
   <span class="cta-animals">🐘🦁🐄🐸🐧🐼</span>
-  <h2>Yuk Subscribe<br>EduFam Sekarang! 🎉</h2>
-  <p>Bergabung dengan</p>
+  <h2 data-i18n="cta_title">Yuk Subscribe EduFam Sekarang! 🎉</h2>
+  <p data-i18n="cta_join">Bergabung dengan</p>
   <span class="cta-subs">163.000+</span>
-  <p style="margin-top:-20px;margin-bottom:32px;">keluarga yang sudah subscribe!</p>
+  <p style="margin-top:-20px;margin-bottom:32px;" data-i18n="cta_families">keluarga yang sudah subscribe!</p>
   <a href="https://www.youtube.com/@EduFam30?sub_confirmation=1" target="_blank" class="btn-cta">
-    <svg viewBox="0 0 24 24"><path d="M10 15l5.19-3L10 9v6M21.56 7.17c-.24-.87-.94-1.57-1.81-1.81C18.18 5 12 5 12 5s-6.18 0-7.75.36c-.87.24-1.57.94-1.81 1.81C2 8.74 2 12 2 12s0 3.26.44 4.83c.24.87.94 1.57 1.81 1.81C5.82 19 12 19 12 19s6.18 0 7.75-.36c.87-.24 1.57-.94 1.81-1.81C22 15.26 22 12 22 12s0-3.26-.44-4.83z"/></svg>
-    🔔 Subscribe — GRATIS!
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 28.57 20" width="28" height="20" class="yt-logo"><path d="M27.973 3.123A3.578 3.578 0 0 0 25.447.597C23.22 0 14.285 0 14.285 0S5.35 0 3.123.597A3.578 3.578 0 0 0 .597 3.123C0 5.35 0 10 0 10s0 4.65.597 6.877a3.578 3.578 0 0 0 2.526 2.526C5.35 20 14.285 20 14.285 20s8.935 0 11.162-.597a3.578 3.578 0 0 0 2.526-2.526C28.57 14.65 28.57 10 28.57 10s0-4.65-.597-6.877z" fill="#FF0000"/><path d="M11.425 14.285L18.848 10 11.425 5.715v8.57z" fill="#fff"/></svg>
+    <span data-i18n="btn_subscribe">🔔 Subscribe — GRATIS!</span>
   </a>
 </section>
 
@@ -535,7 +456,7 @@ footer{background:#1A1A2E;color:white;padding:50px 5% 28px;text-align:center;}
 <footer>
   <div class="footer-logo">🎵 EduFam</div>
   <div class="footer-animals">🐘🦁🐄🐸🐧🐼🦓🦊</div>
-  <p class="footer-desc">Channel nursery rhymes & animal songs terbaik untuk anak-anak. Belajar seru bareng si kecil!</p>
+  <p class="footer-desc" data-i18n="footer_desc">Channel nursery rhymes & animal songs terbaik untuk anak-anak. Belajar seru bareng si kecil!</p>
   <div class="footer-tags">
     <span class="ftag">#nurseryrhymes</span><span class="ftag">#animalsounds</span>
     <span class="ftag">#kidssong</span><span class="ftag">#kidslearning</span>
@@ -543,9 +464,101 @@ footer{background:#1A1A2E;color:white;padding:50px 5% 28px;text-align:center;}
   </div>
   <div class="footer-bottom">
     <p>© 2024 EduFam · <a href="https://www.youtube.com/@EduFam30" target="_blank">youtube.com/@EduFam30</a> · 163K Subscribers · 6.4K Videos</p>
-    <p style="margin-top:6px;">Made with ❤️ for little learners 🌟</p>
+    <p style="margin-top:6px;" data-i18n="footer_made">Made with ❤️ for little learners 🌟</p>
   </div>
 </footer>
+
+<script>
+const translations = {
+  id: {
+    nav_videos: "Video",
+    nav_animals: "Hewan",
+    nav_sub: "🔔 Subscribe!",
+    hero_h1_line2: "& Lagu Anak Seru!",
+    hero_desc: "🎵 Belajar Seru · Lagu Anak · Suara Hewan · Kids Favorites 🎵",
+    btn_watch_yt: "Tonton di YouTube",
+    btn_see_videos: "🎶 Lihat Video →",
+    feat_label: "🔥 #1 Terpopuler",
+    feat_title: 'Video Paling <span style="color:var(--orange)">Banyak Ditonton</span>',
+    feat_badge: "Video Terpopuler #1",
+    feat_desc: "Video paling banyak ditonton di channel EduFam! Belajar nama dan suara hewan dari seluruh dunia — cocok untuk bayi, balita, dan seluruh keluarga.",
+    feat_stat1: "Most Viewed",
+    feat_stat2: "Durasi",
+    feat_stat3: "Semua Usia",
+    btn_watch_now: "Tonton Sekarang",
+    vid_label: "🎵 Koleksi Video",
+    vid_title: 'Video <span style="color:var(--pink)">Seru</span> EduFam',
+    vid_sub: "Semua video langsung dari channel YouTube EduFam — klik untuk menonton!",
+    btn_all_videos: "🎵 Lihat Semua 6.400+ Video →",
+    an_label: "🦁 Kenalan Yuk!",
+    an_title: 'Hewan-Hewan <span style="color:var(--orange)">Lucu</span> di EduFam',
+    an_sub: "Seperti yang muncul di video-video EduFam!",
+    an_elephant:"Gajah", an_lion:"Singa", an_cow:"Sapi", an_tiger:"Harimau",
+    an_rhino:"Badak", an_hippo:"Kuda Nil", an_frog:"Katak", an_panda:"Panda",
+    an_penguin:"Penguin", an_zebra:"Zebra", an_monkey:"Monyet", an_fox:"Rubah",
+    an_pig:"Babi", an_rabbit:"Kelinci", an_sheep:"Domba", an_giraffe:"Jerapah",
+    cta_title: "Yuk Subscribe EduFam Sekarang! 🎉",
+    cta_join: "Bergabung dengan",
+    cta_families: "keluarga yang sudah subscribe!",
+    btn_subscribe: "🔔 Subscribe — GRATIS!",
+    footer_desc: "Channel nursery rhymes & animal songs terbaik untuk anak-anak. Belajar seru bareng si kecil!",
+    footer_made: "Made with ❤️ for little learners 🌟"
+  },
+  en: {
+    nav_videos: "Videos",
+    nav_animals: "Animals",
+    nav_sub: "🔔 Subscribe!",
+    hero_h1_line2: "& Fun Kids Songs!",
+    hero_desc: "🎵 Learn & Play · Kids Songs · Animal Sounds · Family Favorites 🎵",
+    btn_watch_yt: "Watch on YouTube",
+    btn_see_videos: "🎶 See Videos →",
+    feat_label: "🔥 #1 Most Popular",
+    feat_title: 'Most <span style="color:var(--orange)">Watched</span> Video',
+    feat_badge: "Most Popular Video #1",
+    feat_desc: "The most watched video on the EduFam channel! Learn animal names and sounds from around the world — perfect for babies, toddlers, and the whole family.",
+    feat_stat1: "Most Viewed",
+    feat_stat2: "Duration",
+    feat_stat3: "All Ages",
+    btn_watch_now: "Watch Now",
+    vid_label: "🎵 Video Collection",
+    vid_title: 'EduFam\'s <span style="color:var(--pink)">Best</span> Videos',
+    vid_sub: "All videos straight from the EduFam YouTube channel — click to watch!",
+    btn_all_videos: "🎵 See All 6,400+ Videos →",
+    an_label: "🦁 Meet the Animals!",
+    an_title: 'Cute <span style="color:var(--orange)">Animals</span> in EduFam',
+    an_sub: "Just like the ones in our EduFam videos!",
+    an_elephant:"Elephant", an_lion:"Lion", an_cow:"Cow", an_tiger:"Tiger",
+    an_rhino:"Rhino", an_hippo:"Hippo", an_frog:"Frog", an_panda:"Panda",
+    an_penguin:"Penguin", an_zebra:"Zebra", an_monkey:"Monkey", an_fox:"Fox",
+    an_pig:"Pig", an_rabbit:"Rabbit", an_sheep:"Sheep", an_giraffe:"Giraffe",
+    cta_title: "Subscribe to EduFam Now! 🎉",
+    cta_join: "Join",
+    cta_families: "families who already subscribed!",
+    btn_subscribe: "🔔 Subscribe — It's FREE!",
+    footer_desc: "The best nursery rhymes & animal songs channel for kids. Learn and have fun together!",
+    footer_made: "Made with ❤️ for little learners 🌟"
+  }
+};
+
+let currentLang = 'id';
+
+function setLang(lang) {
+  currentLang = lang;
+  // Update buttons
+  document.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.textContent.includes(lang.toUpperCase()));
+  });
+  // Update all tagged elements
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (translations[lang][key] !== undefined) {
+      el.innerHTML = translations[lang][key];
+    }
+  });
+  // Update html lang attribute
+  document.documentElement.lang = lang;
+}
+</script>
 
 </body>
 </html>
